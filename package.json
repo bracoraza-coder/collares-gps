@@ -1,0 +1,23 @@
+{
+  "name": "rastreacan",
+  "version": "1.0.0",
+  "description": "Comparador de collares GPS para perros y gatos",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 3000"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.2",
+    "tailwindcss": "^4.3.2",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1"
+  }
+}
