@@ -4,6 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collares GPS - Comparador de Localizadores de Mascotas</title>
+  <script>
+    // Safeguard to prevent runtime crashes when third-party scripts or extensions try to assign to window.fetch
+    (function() {
+      try {
+        let currentFetch = window.fetch;
+        Object.defineProperty(window, 'fetch', {
+          get() {
+            return currentFetch;
+          },
+          set(value) {
+            currentFetch = value;
+          },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e1) {
+        try {
+          let currentFetch = window.fetch;
+          Object.defineProperty(Window.prototype, 'fetch', {
+            get() {
+              return currentFetch;
+            },
+            set(value) {
+              currentFetch = value;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e2) {
+          console.warn('Safeguard: Could not redefine window.fetch:', e1, e2);
+        }
+      }
+    })();
+  </script>
   <!-- Lucide Icons via CDN for standard vanilla rendering of icons if needed, but we can also use Lucide icons in JS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.330.0/font/lucide.min.css">
 </head>
