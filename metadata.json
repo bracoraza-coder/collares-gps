@@ -1,5 +1,5 @@
 {
-  "name": "Collares GPS",
+  "name": "RastreaCan",
   "description": "Comparador de collares GPS para perros y gatos con opiniones, características y comparativas detalladas.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
