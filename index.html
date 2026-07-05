@@ -4,25 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collares GPS - Comparador de Localizadores de Mascotas</title>
-  <script>
-    // Safeguard to make window.fetch writable and configurable
-    // This prevents runtime crashes in environments (like sandboxed proxies or extensions) that attempt to intercept/overwrite fetch
-    (function() {
-      try {
-        const originalFetch = window.fetch;
-        if (originalFetch) {
-          Object.defineProperty(window, 'fetch', {
-            value: originalFetch,
-            writable: true,
-            configurable: true,
-            enumerable: true
-          });
-        }
-      } catch (e) {
-        console.warn('Safeguard: Could not redefine window.fetch:', e);
-      }
-    })();
-  </script>
   <!-- Lucide Icons via CDN for standard vanilla rendering of icons if needed, but we can also use Lucide icons in JS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@0.330.0/font/lucide.min.css">
 </head>
@@ -37,6 +18,6 @@
     </div>
   </div>
 
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/main.js"></script>
 </body>
 </html>
