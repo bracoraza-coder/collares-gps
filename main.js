@@ -1,6 +1,7 @@
 import './style.css';
 import Chart from 'chart.js/auto';
 import { products } from './products.js';
+import { inject } from '@vercel/analytics';
 
 // State Management
 const state = {
@@ -1790,6 +1791,9 @@ window.reopenCookieBanner = function() {
   showCookieBanner(false);
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 };
+
+// Initialize Vercel Analytics
+inject();
 
 // Start App when loaded
 window.addEventListener('DOMContentLoaded', init);
