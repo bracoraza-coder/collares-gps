@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://collares-gps.vercel.app/sitemap.xml
