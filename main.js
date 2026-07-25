@@ -222,87 +222,6 @@ function parseHash() {
   return { view, params };
 }
 
-// SEO: Inyecta datos estructurados (schema.org) generados a partir de products.js
-// para ayudar a Google a mostrar rich snippets (estrellas, precio, marca) en resultados.
-// No afecta al diseño visual, solo añade metadata invisible en el <head>.
-function injectStructuredData() {
-  const siteUrl = 'https://collares-gps.vercel.app';
-
-  const itemListSchema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Comparador de Collares GPS para Perros",
-    "description": "Comparativa de los mejores localizadores y collares GPS para perros y mascotas disponibles en Amazon España.",
-    "itemListElement": products.map((p, idx) => ({
-      "@type": "ListItem",
-      "position": idx + 1,
-      "item": {
-        "@type": "Product",
-        "name": p.name,
-        "image": p.image_url,
-        "brand": { "@type": "Brand", "name": p.marca },
-        "description": p.description ? p.description.slice(0, 300) : undefined,
-        "aggregateRating": p.valoracion_media ? {
-          "@type": "AggregateRating",
-          "ratingValue": p.valoracion_media,
-          "bestRating": "5",
-          "ratingCount": 50
-        } : undefined,
-        "offers": {
-          "@type": "Offer",
-          "url": p.affiliate_link,
-          "availability": "https://schema.org/InStock",
-          "priceCurrency": "EUR"
-        }
-      }
-    }))
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "RastreaCan",
-    "url": siteUrl,
-    "description": "Comparador independiente de collares y localizadores GPS para perros y mascotas.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": `${siteUrl}/#amazon_search?q={search_term_string}`,
-      "query-input": "required name=search_term_string"
-    }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿Cuál es el mejor collar GPS para perros?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Depende del uso: para seguimiento en tiempo real ilimitado destacan modelos como Tractive o Weenect, mientras que si prefieres evitar cuotas mensuales, opciones sin suscripción como PitPat son las más recomendadas."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Existen collares GPS para perros sin suscripción mensual?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sí, existen localizadores GPS que no requieren cuota mensual y ofrecen acceso ilimitado de por vida tras la compra inicial del dispositivo."
-        }
-      }
-    ]
-  };
-
-  [itemListSchema, websiteSchema, faqSchema].forEach((schema, i) => {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.id = `structured-data-${i}`;
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
-  });
-}
-
 // Initialize App
 function init() {
   appContainer = document.getElementById('app');
@@ -313,7 +232,6 @@ function init() {
   state.viewParams = parsed.params;
   
   renderApp();
-  injectStructuredData();
   
   // Call cookie consent banner check on init
   if (typeof checkAndShowCookieBanner === 'function') {
